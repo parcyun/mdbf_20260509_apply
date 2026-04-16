@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연수 신청하기 | MDBF The Core, Masterclass</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+    <style>
+        body { font-family: "Pretendard Variable", sans-serif; background-color: #F9FAFB; }
+        .card { background: white; border: 1px solid #E5E8EB; border-radius: 20px; transition: all 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="py-20 px-6">
+    <div class="max-w-3xl mx-auto min-h-[80vh]">
+        <h1 class="text-4xl font-black text-center mb-16">전체 연수 목록</h1>
+        
+        <h2 class="text-2xl font-bold mb-8 text-blue-800 border-b-4 border-blue-600 inline-block">High-end 연수</h2>
+        <div id="high-end" class="space-y-6 mb-16"></div>
+
+        <h2 class="text-2xl font-bold mb-8 text-amber-800 border-b-4 border-amber-500 inline-block">Casual 연수</h2>
+        <div id="casual" class="space-y-6"></div>
+
+        <div class="text-center mt-20">
+            <a href="index.html" class="text-gray-500 font-medium hover:underline">← 메인 페이지로 돌아가기</a>
+        </div>
+    </div>
+
+    <footer class="bg-[#0F172A] py-20 px-6 relative text-white mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-start gap-12 mb-16 pb-16 border-b border-white/10">
+                <img src="assets/images/logo_white.png" alt="MDBF Logo White" class="h-14 w-auto object-contain">
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
+                <div class="text-gray-400">
+                    <p class="text-white font-bold mb-4 text-[16px]">@mdbf</p>
+                    <div class="space-y-1.5 text-[14px] leading-relaxed">
+                        <p>사업장소재지: 인천광역시 남동구 호구포로 183, 604호 (고잔동, 후이즈스마트타워)</p>
+                        <p>법인등록번호: 120121-0023788 | 개업연월일: 2024년 01월 02일</p>
+                        <p class="text-white font-semibold">010-3643-6790 | mdbftv@naver.com</p>
+                    </div>
+                </div>
+                <div class="text-right flex flex-col items-end gap-6">
+                    <a href="https://www.instagram.com/parcyun" target="_blank" class="watermark-link">Designed by parcyun studio</a>
+                    <p class="text-gray-500 text-[13px]">© 2026 MDBF. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const highEnd = [
+            { name: "바이브코딩", link: "https://mdbf.co.kr/shop_view?idx=12" },
+            { name: "미드저니 힉스필드", link: "#" },
+            { name: "클로드 코드 하네스", link: "#" }
+        ];
+        const casual = ["Notion 실무 활용", "Canva 디자인 전략", "Google 워크스페이스", "직무연수 도전기", "AI 활용 수업 설계", "예술활용 교과교육"];
+
+        function createCard(item, isHigh) {
+            const name = typeof item === 'string' ? item : item.name;
+            const link = item.link || "#";
+            const handler = link !== "#" ? `window.location.href='${link}'` : "alert('결제 링크 준비 중입니다.')";
+            
+            return `
+                <div class="card p-8 flex items-center justify-between ${isHigh ? 'bg-blue-50 border-blue-200' : 'bg-amber-50 border-amber-200'}">
+                    <div>
+                        <span class="text-xs font-black ${isHigh ? 'text-blue-600' : 'text-amber-600'} uppercase">${isHigh ? 'High-end' : 'Casual'}</span>
+                        <h3 class="text-xl font-bold mt-1">${name}</h3>
+                    </div>
+                    <button onclick="${handler}" class="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors">신청하기</button>
+                </div>
+            `;
+        }
+
+        const highContainer = document.getElementById('high-end');
+        highEnd.forEach(n => highContainer.innerHTML += createCard(n, true));
+
+        const casualContainer = document.getElementById('casual');
+        casual.forEach(n => casualContainer.innerHTML += createCard(n, false));
+    </script>
+</body>
+</html>
