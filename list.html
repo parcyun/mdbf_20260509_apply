@@ -10,7 +10,6 @@
     <style>
         body { font-family: "Pretendard Variable", sans-serif; background-color: #F9FAFB; }
         .card { background: white; border: 1px solid #E5E8EB; border-radius: 20px; transition: all 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="py-20 px-6">
@@ -52,24 +51,270 @@
 
     <script>
         const highEnd = [
-            { name: "바이브코딩", link: "https://mdbf.co.kr/shop_view?idx=12" },
-            { name: "미드저니 힉스필드", link: "#" },
-            { name: "클로드 코드 하네스", link: "#" }
+            { name: "바이브코딩", link: "https://mdbf.co.kr/shop_view?idx=13" },
+            { name: "미드저니 힉스필드", link: "https://mdbf.co.kr/shop_view?idx=14" },
+            { name: "클로드 코드 하네스", link: "https://mdbf.co.kr/shop_view?idx=15" }
         ];
-        const casual = ["Notion 실무 활용", "Canva 디자인 전략", "Google 워크스페이스", "직무연수 도전기", "AI 활용 수업 설계", "예술활용 교과교육"];
+        const casual = [
+            { name: "Notion 실무 활용", link: "https://mdbf.co.kr/shop_view?idx=16" },
+            { name: "2026 캔바 AI & 업데이트: 2026년형 유저 되기!", link: "https://mdbf.co.kr/shop_view?idx=17" },
+            { name: "Google 워크스페이스", link: "https://mdbf.co.kr/shop_view?idx=18" },
+            { name: "직무연수 도전기", link: "https://mdbf.co.kr/shop_view?idx=19" },
+            { name: "AI 활용 수업 설계", link: "https://mdbf.co.kr/shop_view?idx=20" },
+            { name: "예술활용 교과교육", link: "https://mdbf.co.kr/shop_view?idx=21" }
+        ];
+
+        function toggleDetails(btn) {
+            const card = btn.closest('.card');
+            const content = card.querySelector('.details-content');
+            
+            content.classList.toggle('hidden');
+            btn.textContent = content.classList.contains('hidden') ? '상세 내용 보기 ▼' : '접기 ▲';
+        }
 
         function createCard(item, isHigh) {
             const name = typeof item === 'string' ? item : item.name;
             const link = item.link || "#";
             const handler = link !== "#" ? `window.location.href='${link}'` : "alert('결제 링크 준비 중입니다.')";
             
-            return `
-                <div class="card p-8 flex items-center justify-between ${isHigh ? 'bg-blue-50 border-blue-200' : 'bg-amber-50 border-amber-200'}">
-                    <div>
-                        <span class="text-xs font-black ${isHigh ? 'text-blue-600' : 'text-amber-600'} uppercase">${isHigh ? 'High-end' : 'Casual'}</span>
-                        <h3 class="text-xl font-bold mt-1">${name}</h3>
+            // 강사 이름 매핑
+            const instructorMap = {
+                '바이브코딩': '이상선',
+                '미드저니 힉스필드': '박창현',
+                '클로드 코드 하네스': '임세범',
+                'Notion 실무 활용': '손수현',
+                'Canva 디자인 전략': '황은지',
+                'Google 워크스페이스': '장성환',
+                '직무연수 도전기': '채희재',
+                'AI 활용 수업 설계': '조민의',
+                '예술활용 교과교육': '박병우'
+            };
+            const instructor = instructorMap[name] || '';
+            
+            let detailsContent = '<p class="text-sm">강좌에 대한 상세 설명을 여기에 입력하세요.</p>';
+            if (name === '바이브코딩') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>웹앱의 기본 개념 이해</li>
+                                <li>Google Apps Script 기반 웹앱 만들기</li>
+                                <li>AI IDE를 활용한 웹앱 개발 (1)</li>
+                                <li>AI IDE를 활용한 웹앱 프로젝트 완성 (2)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>노트북 (개인 개발 환경)</li>
+                                <li>Antigravity 설치</li>
+                                <li>GitHub Desktop 설치</li>
+                                <li>GitHub 계정</li>
+                                <li>Google 계정</li>
+                            </ul>
+                        </div>
                     </div>
-                    <button onclick="${handler}" class="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors">신청하기</button>
+                `;
+            } else if (name === '클로드 코드 하네스') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>Claude Code 설치</li>
+                                <li>하네스 셋팅</li>
+                                <li>Windows 편의 셋팅</li>
+                                <li>(HWP·PDF·PPT·영상 등)를 마크다운으로 변환</li>
+                                <li>Firebase 배포</li>
+                                <li>자주 막히는 지점 트러블슈팅 5선</li>
+                                <li>본인 손으로 만들기 실습 — 프로젝트 컨텍스트 앵커 심기 + deploy 스킬 만들기</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>노트북</li>
+                                <li>Claude Code Pro (sonnet기준)</li>
+                                <li>Google 계정 (개인 계정 권장)</li>
+                                <li>해외결제 가능한 신용카드</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (name === '미드저니 힉스필드') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>미드저니 WebUI 활용법</li>
+                                <li>미드저니 일관성 유지 기술</li>
+                                <li>Sref, Moodboard, P code 활용</li>
+                                <li>미드저니로 이미지 공장 돌리기</li>
+                                <li>힉스필드 플랫폼은 무엇인가?</li>
+                                <li>힉스필드 소울ID, 시네마 스튜디오 활용</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>노트북</li>
+                                <li>미드저니 Basic 플랜 결제된 유료 계정</li>
+                                <li>힉스필드 크레딧 결제된 유료 계정</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (name === 'Notion 실무 활용') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-gray-700 mb-1">노션 시작하기-왜 노션인가?</h5>
+                                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                                    <li>노션의 장점 알아보기</li>
+                                    <li>기본 인터페이스 살펴보기</li>
+                                    <li>핵심 기능 살펴보기</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-700 mb-1">교무일지 활용 실습</h5>
+                                <ul class="list-disc list-inside space-y-1 text-sm ml-4">
+                                    <li>템플릿 안내: 선생님을 위한 교무일지 템플릿 구조 살펴보기</li>
+                                    <li>활용 방법 실습: 일정 관리, 상담 기록, 수업 자료 정리 등</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <p class="text-sm mb-2">수업의 원활한 진행을 위해 아래 사항을 미리 준비해 주시기 바랍니다.</p>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>개인 노트북: 실습 위주의 강의이므로 노트북 지참이 필수입니다.</li>
+                                <li>노션 계정: 수업 시작 전 가입 및 로그인이 완료되어 있어야 합니다.</li>
+                            </ul>
+                            <p class="text-sm mt-2"><strong>Tip:</strong> 교육용 이메일 계정(대학원 등)으로 가입 시 무료 업그레이드 혜택을 받을 수 있습니다.</p>
+                        </div>
+                    </div>
+                `;
+            } else if (name === 'Canva 디자인 전략') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강의 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>교육계정 활용: 혜택 안내 및 AI 기능 제어</li>
+                                <li>Magic Studio: AI 사진 편집, 배경 제거, 매직 그랩</li>
+                                <li>최신 AI 기능: 매직 레이어, 3D 콘텐츠 생성, 매직 미디어</li>
+                                <li>워크플로우: 캔바 시트 및 대량 제작 활용</li>
+                                <li>제미나이 연계: 실전 수업 프롬프트 7종 실습</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>캔바 교육계정 (재직증명서 제출 가입 권장)</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (name === 'Google 워크스페이스') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>구글스프레드시트를 활용한 학교폭력실태조사 참여번호 안내하기</li>
+                                <li>연수등록부를 모바일로 서명 받기</li>
+                                <li>구글워크스페이스를 활용한 사례 소개</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>노트북이나 크롬북</li>
+                                <li>모바일 기기의 경우 크롬, 구글문서, 구글스프레드시트, 지메일 앱 설치하기</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (name === '직무연수 도전기') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>연수 크리에이터의 이해 및 강의 기획</li>
+                                <li>심사를 통과하는 깔끔한 디자인 및 저작권 팁</li>
+                                <li>OBS를 활용한 영상 촬영방법</li>
+                                <li>핵심을 짚어주는 영상 구성과 자막 편집</li>
+                                <li>과정 마무리(퀴즈 출제 및 상세페이지 제작)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>노트북</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (name === 'AI 활용 수업 설계') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>왜 에듀테크 디톡스가 필요한가</li>
+                                <li>수업 설계 기준(필요성, 대체 가능성, 사고 중심) 이해</li>
+                                <li>인공지능 융합수업 사례 나눔</li>
+                                <li>기존 수업을 재구성하는 디톡스 설계 활동</li>
+                                <li>나의 에듀테크 사용 돌아보기</li>
+                                <li>수업 사례 분석 및 핵심 포인트 도출</li>
+                                <li>나의 수업 디톡스 설계 워크</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>필기도구 또는 간단 메모 환경</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (name === '예술활용 교과교육') {
+                detailsContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">강좌 내용</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>몸과 마음을 여는 예술 놀이</li>
+                                <li>움직임 기반 예술 놀이</li>
+                                <li>스카프와 음악을 활용한 예술 놀이</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">수강생 준비사항</h4>
+                            <p class="text-sm">준비사항 정보 준비 중입니다.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="card p-8 border ${isHigh ? 'bg-blue-50 border-blue-200' : 'bg-amber-50 border-amber-200'}">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-black ${isHigh ? 'text-blue-600' : 'text-amber-600'} uppercase">${isHigh ? 'High-end' : 'Casual'}</span>
+                            <h3 class="text-xl font-bold mt-1">${name}${instructor ? ' - ' + instructor : ''}</h3>
+                        </div>
+                        <button onclick="${handler}" class="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors">신청하기</button>
+                    </div>
+                    <button onclick="toggleDetails(this)" class="mt-4 text-sm font-semibold text-gray-600 hover:text-black">상세 내용 보기 ▼</button>
+                    <div class="details-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-700">
+                        ${detailsContent}
+                    </div>
                 </div>
             `;
         }

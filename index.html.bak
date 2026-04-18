@@ -222,6 +222,7 @@
                     </div>
                     <h3 class="text-[22px] font-bold mb-3">신청 인원</h3>
                     <p class="text-gray-500 text-[16px]">각 강의별 최대 40명</p>
+                    <p class="text-gray-500 text-[16px]">선착순 정회원 우선 배정</p>
                 </div>
             </div>
         </div>
@@ -304,7 +305,6 @@
                         <span class="text-[12px] font-black text-amber-500 uppercase mb-2 block tracking-widest">강의실 4</span>
                         <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">복잡한 교무 행정, 노션 하나로 스마트하게 관리하기</h4>
                         <p class="text-lg font-bold text-mdbfBlue mt-2">손수현</p>
-<p class="text-lg font-bold text-gray-400 mt-1 leading-relaxed">몽당오늘 프로젝트 팀장<br/>몽당분필 노션 교사일지 제작<br/>경상남도교육청 자율연수 노션 강사</p>
 
                     </div>
                 </div>
@@ -312,9 +312,8 @@
                     <div class="capsule-frame"><img src="assets/images/profile/황은지.png" alt="황은지" class="w-full h-full object-cover"></div>
                     <div class="px-2">
                         <span class="text-[12px] font-black text-amber-500 uppercase mb-2 block tracking-widest">강의실 5</span>
-                        <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">2026 캔바 AI & 업데이트: 2026년형 유저 되기!</h4>
+                        <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">2026 캔바 AI</h4>
                         <p class="text-lg font-bold text-mdbfBlue mt-2">황은지</p>
-<p class="text-lg font-bold text-gray-400 mt-1 leading-relaxed">교사 1호 캔버써더<br/>교사 1호 캔바 크리에이터<br/>KERIS 지식샘터 우수강사</p>
 
                     </div>
                 </div>
@@ -324,7 +323,6 @@
                         <span class="text-[12px] font-black text-amber-500 uppercase mb-2 block tracking-widest">강의실 6</span>
                         <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">학교에서의 구글워크스페이스 활용법</h4>
                         <p class="text-lg font-bold text-mdbfBlue mt-2">장성환</p>
-<p class="text-lg font-bold text-gray-400 mt-1 leading-relaxed">김포 장기초등학교 교사<br/>구글공인트레이너<br/>몽당분필 9기</p>
 
                     </div>
                 </div>
@@ -334,7 +332,6 @@
                         <span class="text-[12px] font-black text-amber-500 uppercase mb-2 block tracking-widest">강의실 7</span>
                         <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">교사를 위한 연수제작 설명서</h4>
                         <p class="text-lg font-bold text-mdbfBlue mt-2">채희재</p>
-<p class="text-lg font-bold text-gray-400 mt-1 leading-relaxed">온라인 연수 10개 과정 이상 개발<br/>교육방송 연구대회 입상 다수<br/>교육부장관상 등 공모전 입상 다수</p>
 
                     </div>
                 </div>
@@ -344,7 +341,6 @@
                         <span class="text-[12px] font-black text-amber-500 uppercase mb-2 block tracking-widest">강의실 8</span>
                         <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">에듀테크 디톡스 - 교실 속 불필요한 디지털 덜어내기</h4>
                         <p class="text-lg font-bold text-mdbfBlue mt-2">조민의</p>
-<p class="text-lg font-bold text-gray-400 mt-1 leading-relaxed">인공지능미니쌤 SNS 운영<br/>EBS뉴스 [학교 밖 생존교양] 인공지능교육 전문가 출연<br/>금성 티칭허브 활용 수업공모전 대상</p>
 
                     </div>
                 </div>
@@ -354,7 +350,6 @@
                         <span class="text-[12px] font-black text-amber-500 uppercase mb-2 block tracking-widest">강의실 9</span>
                         <h4 class="text-[22px] font-bold group-hover:text-amber-500 transition-colors">교실에서 바로 쓰는 창의 예술 움직임 놀이</h4>
                         <p class="text-lg font-bold text-mdbfBlue mt-2">박병우, 이정은</p>
-<p class="text-lg font-bold text-gray-400 mt-1 leading-relaxed">충남 교사 극단 '초록칠판' 전 대표<br/>충남교육연극협회 운영위원<br/>티처빌 교육연극 원격연수 강사</p>
                     </div>
                 </div>
             </div>
