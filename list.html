@@ -311,12 +311,12 @@
             
             return `
                 <div class="card p-8 border ${isHigh ? 'bg-blue-50 border-blue-200' : 'bg-amber-50 border-amber-200'}">
-                    <div class="flex items-center justify-between">
-                        <div>
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1">
                             <span class="text-xs font-black ${isHigh ? 'text-blue-600' : 'text-amber-600'} uppercase">${isHigh ? 'High-end' : 'Casual'}</span>
                             <h3 class="text-xl font-bold mt-1">${name}${instructor ? ' - ' + instructor : ''}</h3>
                         </div>
-                        <button onclick="${handler}" class="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors">신청하기</button>
+                        <button onclick="${handler}" class="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors md:whitespace-nowrap">신청하기</button>
                     </div>
                     <button onclick="toggleDetails(this)" class="mt-4 text-sm font-semibold text-gray-600 hover:text-black">상세 내용 보기 ▼</button>
                     <div class="details-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-700">
