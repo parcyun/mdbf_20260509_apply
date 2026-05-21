@@ -429,6 +429,40 @@
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"></path></svg>
     </div>
 
+    <!-- 종료 공지 팝업 -->
+    <div id="noticePopup" class="fixed inset-0 z-[100] flex items-center justify-center px-4" style="background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+        <div class="bg-white rounded-[20px] shadow-2xl max-w-md w-full p-8 md:p-10" role="dialog" aria-modal="true" aria-labelledby="noticeTitle">
+            <h2 id="noticeTitle" class="text-[22px] md:text-[24px] font-bold mb-5 text-gray-900">몽당분필 오픈연수 안내</h2>
+            <p class="text-[15px] text-gray-700 leading-relaxed mb-6">
+                큰 관심을 가져주셔서 감사합니다.<br/>
+                해당 연수는 <span class="font-semibold text-[#3364D9]">5월 9일에 성황리에 운영이 종료</span>되었습니다.<br/><br/>
+                추후 온라인 연수 플랫폼으로 다시 인사드리겠습니다.<br/><br/>
+                자세한 안내 및 문의는 오픈채팅방을 통해 가능하니 참고해주세요.
+            </p>
+            <a href="https://open.kakao.com/o/gXVSD5qi" target="_blank" rel="noopener" class="block w-full text-center bg-[#3364D9] text-white py-3.5 rounded-[12px] font-bold hover:bg-[#1B4BBE] transition-all mb-3">
+                오픈채팅방 입장 (암호 0509)
+            </a>
+            <button onclick="closeNoticePopup()" class="block w-full text-center text-gray-500 py-2.5 rounded-[12px] font-medium hover:text-gray-800 transition-colors">
+                닫기
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function closeNoticePopup() {
+            const p = document.getElementById('noticePopup');
+            if (p) p.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        (function initNotice(){
+            const p = document.getElementById('noticePopup');
+            if (!p) return;
+            document.body.style.overflow = 'hidden';
+            p.addEventListener('click', (e) => { if (e.target === p) closeNoticePopup(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNoticePopup(); });
+        })();
+    </script>
+
     <script>
         AOS.init({
             duration: 800,

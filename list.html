@@ -13,16 +13,21 @@
     </style>
 </head>
 <body class="py-20 px-6">
-    <!-- 공지 팝업 -->
-    <div id="noticePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-8 max-w-md mx-4 shadow-lg">
-            <h2 class="text-lg font-bold text-gray-800 mb-4">중요 공지</h2>
-            <p class="text-sm text-gray-700 mb-6 leading-relaxed">
-                <span class="font-bold">9개 연수 중 1개만 선택해주세요!</span><br/>
-                High-end 연수와 Casual 연수는 동일한 시간에 진행됩니다.
+    <!-- 종료 공지 팝업 -->
+    <div id="noticePopup" class="fixed inset-0 z-[100] flex items-center justify-center px-4" style="background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+        <div class="bg-white rounded-[20px] shadow-2xl max-w-md w-full p-8 md:p-10" role="dialog" aria-modal="true" aria-labelledby="noticeTitle">
+            <h2 id="noticeTitle" class="text-[22px] md:text-[24px] font-bold mb-5 text-gray-900">몽당분필 오픈연수 안내</h2>
+            <p class="text-[15px] text-gray-700 leading-relaxed mb-6">
+                큰 관심을 가져주셔서 감사합니다.<br/>
+                해당 연수는 <span class="font-semibold text-[#3364D9]">5월 9일에 성황리에 운영이 종료</span>되었습니다.<br/><br/>
+                추후 온라인 연수 플랫폼으로 다시 인사드리겠습니다.<br/><br/>
+                자세한 안내 및 문의는 오픈채팅방을 통해 가능하니 참고해주세요.
             </p>
-            <button onclick="closeNoticePopup()" class="w-full bg-[#3364D9] text-white py-2 rounded-lg font-bold hover:bg-[#1B4BBE] transition-all">
-                확인했습니다
+            <a href="https://open.kakao.com/o/gXVSD5qi" target="_blank" rel="noopener" class="block w-full text-center bg-[#3364D9] text-white py-3.5 rounded-[12px] font-bold hover:bg-[#1B4BBE] transition-all mb-3">
+                오픈채팅방 입장 (암호 0509)
+            </a>
+            <button onclick="closeNoticePopup()" class="block w-full text-center text-gray-500 py-2.5 rounded-[12px] font-medium hover:text-gray-800 transition-colors">
+                닫기
             </button>
         </div>
     </div>
@@ -72,21 +77,30 @@
 
     <script>
         function closeNoticePopup() {
-            document.getElementById('noticePopup').style.display = 'none';
+            const p = document.getElementById('noticePopup');
+            if (p) p.style.display = 'none';
+            document.body.style.overflow = '';
         }
+        (function initNotice(){
+            const p = document.getElementById('noticePopup');
+            if (!p) return;
+            document.body.style.overflow = 'hidden';
+            p.addEventListener('click', (e) => { if (e.target === p) closeNoticePopup(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNoticePopup(); });
+        })();
 
         const highEnd = [
-            { name: "바이브코딩", link: "https://mdbf.co.kr/shop_view?idx=13" },
-            { name: "미드저니 힉스필드", link: "https://mdbf.co.kr/shop_view?idx=14" },
-            { name: "클로드 코드 하네스", link: "https://mdbf.co.kr/shop_view?idx=15" }
+            { name: "바이브코딩" },
+            { name: "미드저니 힉스필드" },
+            { name: "클로드 코드 하네스" }
         ];
         const casual = [
-            { name: "Notion 실무 활용", link: "https://mdbf.co.kr/shop_view?idx=16" },
-            { name: "2026 캔바 디자인 전략", link: "https://mdbf.co.kr/shop_view?idx=17" },
-            { name: "Google 워크스페이스", link: "https://mdbf.co.kr/shop_view?idx=18" },
-            { name: "직무연수 도전기", link: "https://mdbf.co.kr/shop_view?idx=19" },
-            { name: "AI 활용 수업 설계", link: "https://mdbf.co.kr/shop_view?idx=20" },
-            { name: "바이브코딩(입문)", link: "https://mdbf.co.kr/shop_view?idx=21" }
+            { name: "Notion 실무 활용" },
+            { name: "2026 캔바 디자인 전략" },
+            { name: "Google 워크스페이스" },
+            { name: "직무연수 도전기" },
+            { name: "AI 활용 수업 설계" },
+            { name: "바이브코딩(입문)" }
         ];
 
         function toggleDetails(btn) {
@@ -99,8 +113,6 @@
 
         function createCard(item, isHigh) {
             const name = typeof item === 'string' ? item : item.name;
-            const link = item.link || "#";
-            const handler = link !== "#" ? `window.location.href='${link}'` : "alert('결제 링크 준비 중입니다.')";
             
             // 강사 이름 매핑
             const instructorMap = {
@@ -336,7 +348,6 @@
                             <span class="text-xs font-black ${isHigh ? 'text-blue-600' : 'text-amber-600'} uppercase">${isHigh ? 'High-end' : 'Casual'}</span>
                             <h3 class="text-xl font-bold mt-1">${name}${instructor ? ' - ' + instructor : ''}</h3>
                         </div>
-                        <button onclick="${handler}" class="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors md:whitespace-nowrap">신청하기</button>
                     </div>
                     <button onclick="toggleDetails(this)" class="mt-4 text-sm font-semibold text-gray-600 hover:text-black">상세 내용 보기 ▼</button>
                     <div class="details-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-700">
